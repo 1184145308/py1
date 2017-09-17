@@ -10,12 +10,12 @@ print('waiting for connecting.....')
 
 while True:
     sock,addr=s.accept()
-    print('New connecting from %s' %addr)
+    print('New connecting from %s :%d' %(addr[0],addr[1]))
     sock.send(b'Welcome!')
     while True:
         data=sock.recv(1024)
         if not data or data.decode('utf-8')=='exit':
             break
-        sock.send('Hello %s' %data.decode('utf-8'))
+        sock.send(bytes('Hello %s' %data.decode('utf-8'),encoding='utf-8'))
     sock.close()
-    print('Connecting from %s is over'%addr)
+    print('Connecting from %s is over'%addr[0])
